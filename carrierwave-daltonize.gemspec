@@ -6,10 +6,10 @@ require 'carrierwave-daltonize/version'
 Gem::Specification.new do |gem|
   gem.name          = "carrierwave-daltonize"
   gem.version       = Carrierwave::Daltonize::VERSION
-  gem.authors       = ["Yoav Aner"]
+  gem.authors       = ["Yoav Aner", "John Cupitt"]
   gem.email         = ["yoav@gingerlime.com"]
   gem.description   = %q{Carrierwave Daltonize processing}
-  gem.summary       = %q{Carrierwave Daltonize is based on Carrierwave-Vips and provides daltonize processing for converting images to help colour-blindness}
+  gem.summary       = %q{Adds daltonize processing for converting images to help colour-blindness. Using CarrierWave-VIPS}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)

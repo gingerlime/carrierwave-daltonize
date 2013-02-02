@@ -3,23 +3,32 @@ require "carrierwave-daltonize/version"
 require 'vips'
 require 'carrierwave/vips'
 
-module Carrierwave
+module CarrierWave
   module Daltonize
 
-    include Carrierwave::Vips
+    include CarrierWave::Vips
 
     def self.included(base)
       base.send(:extend, ClassMethods)
     end
 
     module ClassMethods
+
       def deuteranope
         process :deuteranope
       end
+
+      def protanope
+        process :protanope
+      end
+
+      def tritanope
+        process :tritanope
+      end
+
     end
 
-    def deuteranope
-      binding.pry
+    def daltonize (matrix)
       manipulate! do |image|
         begin
             # import to CIELAB with lcms
@@ -38,20 +47,35 @@ module Carrierwave
                           [3.45565, 27.1554, 3.86714],
                           [0.0299566, 0.184309, 1.46709]])                    
 
-        # through the Deuteranope matrix
-        deut = lms.recomb([[1, 0, 0],
-                            [0.494207, 0, 1.24827],
-                            [0, 0, 1]])
+        # through the matrix
+        mat = lms.recomb(matrix)
 
         # back to xyz (this is the inverse of the lms matrix above)
-        xyz = deut.recomb([[0.0809444479, -0.130504409, 0.116721066],
+        xyz = mat.recomb([[0.0809444479, -0.130504409, 0.116721066],
                            [-0.0102485335, 0.0540193266, -0.113614708],
                            [-0.000365296938, -0.00412161469, 0.693511405]])
 
         # .. and export to sRGB for saving
         rgb = xyz.xyz_to_srgb()
-        image = rgb
       end
+    end
+
+    def deuteranope
+      daltonize([[1, 0, 0],
+                 [0.494207, 0, 1.24827],
+                 [0, 0, 1]])
+    end
+
+    def protanope
+      daltonize([[0, 2.02344, -2.52581],
+                 [0, 1, 0],
+                 [0, 0, 1]])
+    end
+
+    def tritanope
+      daltonize([[1, 0, 0],
+                 [0, 1, 0],
+                 [-0.395913, 0.801109, 0]])
     end
   end
 end
