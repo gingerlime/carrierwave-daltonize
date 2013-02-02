@@ -1,6 +1,6 @@
 # CarrierWave::Daltonize
 
-Adds daltonize processing to carrierwave (using carrierwave-vips)
+Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using carrierwave-vips)
 
 ## Installation
 
