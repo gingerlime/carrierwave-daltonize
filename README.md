@@ -1,12 +1,14 @@
-# Carrierwave::Daltonize
+# CarrierWave::Daltonize
 
-TODO: Write a gem description
+Adds daltonize processing to carrierwave (using carrierwave-vips)
 
 ## Installation
 
+Requires ruby-vips. See https://github.com/jcupitt/ruby-vips
+
 Add this line to your application's Gemfile:
 
-    gem 'carrierwave-daltonize'
+    gem 'carrierwave-daltonize', :git => 'git://github.com/gingerlime/carrierwave-daltonize.git'
 
 And then execute:
 
@@ -18,7 +20,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your carrierwave uploader, include carrierwave daltonize, and then use
+any of the daltonize processing functions.
+
+    class ColourBlindUploader < CarrierWave::Uploader::Base
+      include CarrierWave::Daltonize
+
+      version :deut
+        process :deuteranope
+      end
+
+      version :prot
+        process :protanope
+      end
+
+      version :trit
+        process :tritanope
+      end
+    end
+
+## Limitations
+
+Currently supports only jpeg. 
+
+## Contributors
+
+* John Cupitt (@jcupitt) - created the ruby-vips algorithm
+* Yoav Aner (@gingerlime) - wrapped the code into this Gem
+* Stanislaw Pankevich (@stanislaw) and Mario Visic (@mariovisic) - creators of carrierwave-vips
 
 ## Contributing
 
