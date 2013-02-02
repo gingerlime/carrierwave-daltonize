@@ -47,7 +47,7 @@ Currently supports only jpeg.
 
 * John Cupitt (@jcupitt) - created the ruby-vips algorithm
 * Yoav Aner (@gingerlime) - wrapped the code into this Gem
-* Stanislaw Pankevich (@stanislaw) and Mario Visic (@mariovisic) - creators of carrierwave-vips
+* Jeremy Nicoll (@eltiare), Stanislaw Pankevich (@stanislaw) and Mario Visic (@mariovisic) - creators / contributors of carrierwave-vips
 
 ## Contributing
 
