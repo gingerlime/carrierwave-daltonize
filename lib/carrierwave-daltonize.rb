@@ -41,6 +41,7 @@ module CarrierWave
 
         # turn to XYZ, a linear light space
         xyz = cielab.lab_to_xyz()
+        orig = xyz
 
         # convert rgb to lms
         lms = xyz.recomb([[17.8824, 43.5161, 4.11935],
@@ -54,6 +55,14 @@ module CarrierWave
         xyz = mat.recomb([[0.0809444479, -0.130504409, 0.116721066],
                            [-0.0102485335, 0.0540193266, -0.113614708],
                            [-0.000365296938, -0.00412161469, 0.693511405]])
+
+        # applying some error correction
+        err = orig - xyz
+        err = err.recomb([[0, 0, 0],
+                          [0.7, 1, 0],
+                          [0.7,0,1]])
+        xyz = err + orig
+        # TODO: apply correction to ensure values are between 0-255 (how??)
 
         # .. and export to sRGB for saving
         rgb = xyz.xyz_to_srgb()
