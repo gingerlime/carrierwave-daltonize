@@ -5,6 +5,7 @@ Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using pyt
 ## Installation
 
 Requires python with Numpy and PIL libraries. To install run
+
     easy_install numpy
     easy_install PIL
 
