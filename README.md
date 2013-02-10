@@ -10,6 +10,7 @@ Requires python with Numpy and PIL libraries. To install run
     easy_install PIL
 
 or
+
     pip install numpy
     pip install PIL
 
