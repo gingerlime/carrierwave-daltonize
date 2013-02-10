@@ -1,14 +1,20 @@
 # CarrierWave::Daltonize
 
-Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using carrierwave-vips)
+Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using python)
 
 ## Installation
 
-Requires ruby-vips. See https://github.com/jcupitt/ruby-vips
+Requires python with Numpy and PIL libraries. To install run
+    easy_install numpy
+    easy_install PIL
+
+or
+    pip install numpy
+    pip install PIL
 
 Add this line to your application's Gemfile:
 
-    gem 'carrierwave-daltonize', :git => 'git://github.com/gingerlime/carrierwave-daltonize.git'
+    gem 'carrierwave-daltonize', :git => 'git://github.com/gingerlime/carrierwave-daltonize.git', :branch => 'python'
 
 And then execute:
 
@@ -41,13 +47,12 @@ any of the daltonize processing functions.
 
 ## Limitations
 
-Currently supports only jpeg. 
+Currently seems relatively slow, and requires launching python from a system process.
 
 ## Contributors
 
-* John Cupitt (@jcupitt) - created the ruby-vips algorithm
-* Yoav Aner (@gingerlime) - wrapped the code into this Gem
-* Jeremy Nicoll (@eltiare), Stanislaw Pankevich (@stanislaw) and Mario Visic (@mariovisic) - creators / contributors of carrierwave-vips
+* Oliver Siemoneit - created the original python code for MoinMoin
+* Yoav Aner (@gingerlime) - adapted the code and wrapped it into this Gem
 
 ## Contributing
 
