@@ -1,12 +1,9 @@
 require "carrierwave-daltonize/version"
 
-require 'vips'
-require 'carrierwave/vips'
-
 module CarrierWave
   module Daltonize
 
-    include CarrierWave::Vips
+    @@_gem_path = Gem::Specification.find_by_name('carrierwave-daltonize').full_gem_path
 
     def self.included(base)
       base.send(:extend, ClassMethods)
@@ -28,63 +25,27 @@ module CarrierWave
 
     end
 
-    def daltonize (matrix)
-      manipulate! do |image|
-        begin
-            # import to CIELAB with lcms
-            # if there's no profile there, we'll fall back to the thing below
-            cielab = image.icc_import_embedded(:relative)
-        rescue VIPS::Error
-            # nope .. use the built-in converter instead
-            cielab = image.srgb_to_xyz().xyz_to_lab()
-        end
-
-        # turn to XYZ, a linear light space
-        xyz = cielab.lab_to_xyz()
-        orig = xyz
-
-        # convert rgb to lms
-        lms = xyz.recomb([[17.8824, 43.5161, 4.11935],
-                          [3.45565, 27.1554, 3.86714],
-                          [0.0299566, 0.184309, 1.46709]])                    
-
-        # through the matrix
-        mat = lms.recomb(matrix)
-
-        # back to xyz (this is the inverse of the lms matrix above)
-        xyz = mat.recomb([[0.0809444479, -0.130504409, 0.116721066],
-                           [-0.0102485335, 0.0540193266, -0.113614708],
-                           [-0.000365296938, -0.00412161469, 0.693511405]])
-
-        # applying some error correction
-        err = orig - xyz
-        err = err.recomb([[0, 0, 0],
-                          [0.7, 1, 0],
-                          [0.7,0,1]])
-        xyz = err + orig
-        # TODO: apply correction to ensure values are between 0-255 (how??)
-
-        # .. and export to sRGB for saving
-        rgb = xyz.xyz_to_srgb()
-      end
+    # pytonize - daltonize processing using python
+    def pytonize proc_type
+      cache_stored_file! unless cached?
+      tmp_name = current_path.sub(/(\.[a-z]+)$/i, '_tmp\1')
+      output = `python #{@@_gem_path}/vendor/daltonize.py #{current_path} #{tmp_name} #{proc_type}`
+      raise output if $?.exitstatus != 0
+      FileUtils.mv(tmp_name, current_path)
+    rescue => e
+      raise CarrierWave::ProcessingError.new("Failed to manipulate file. Original Error: #{e}")
     end
 
     def deuteranope
-      daltonize([[1, 0, 0],
-                 [0.494207, 0, 1.24827],
-                 [0, 0, 1]])
+      pytonize 'd'
     end
 
     def protanope
-      daltonize([[0, 2.02344, -2.52581],
-                 [0, 1, 0],
-                 [0, 0, 1]])
+      pytonize 'p'
     end
 
     def tritanope
-      daltonize([[1, 0, 0],
-                 [0, 1, 0],
-                 [-0.395913, 0.801109, 0]])
+      pytonize 't'
     end
   end
 end

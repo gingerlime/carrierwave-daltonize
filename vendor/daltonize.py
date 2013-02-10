@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 """
+   Modified by Yoav Aner for CarrierWave-Daltonize gem
+
    MoinMoin - Daltonize ImageCorrection - Effect
 
    Daltonize image correction algorithm implemented according to
@@ -46,14 +48,12 @@ import os.path
 
 def execute(source_filename, dest_filename, color_deficit):
 
-    helpers_available = True
     try:
         import numpy
         from PIL import Image
-    except:
-        helpers_available = False
-    if not helpers_available:
-        return source_filename
+    except Exception, e:
+        print "%s. Please install numpy and PIL, e.g. using `pip install PIL`" % e
+        sys.exit(1)
 
     # Get image data
     im = Image.open(source_filename)
@@ -151,8 +151,6 @@ def execute(source_filename, dest_filename, color_deficit):
 
 if __name__ == '__main__':
     import sys
-    print "Daltonize image correction for color blind users"
-    
     if len(sys.argv) != 4:
         print "Calling syntax: daltonize.py [fullpath to image file] [target image full path] [deficit (d=deuteranop, p=protanope, t=tritanope)]"
         print "Example: daltonize.py /path/to/pic.png d /path/to/deuteranope.png"
@@ -175,8 +173,5 @@ if __name__ == '__main__':
         print "unknown deficit %s. Please use one of (d,p,t)" % color_deficit
         sys.exit(1)
 
-    modified_filename = execute(source_filename, dest_path, color_deficit)
-    if modified_filename == source_filename:
-        print "Error while processing image: PIL/NumPy missing and/or source file is a grayscale image."
-    else:
-        print "Image successfully daltonized"
+    execute(source_filename, dest_path, color_deficit)
+    print "Image successfully daltonized"
