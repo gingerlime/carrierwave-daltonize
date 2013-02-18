@@ -1,4 +1,5 @@
 require "carrierwave-daltonize/version"
+require "daltonize"
 
 module CarrierWave
   module Daltonize
@@ -29,8 +30,10 @@ module CarrierWave
     def rubytonize proc_type
       cache_stored_file! unless cached?
       tmp_name = current_path.sub(/(\.[a-z]+)$/i, '_tmp\1')
-      output = `ruby #{@@_gem_path}/vendor/daltonize.rb #{current_path} #{tmp_name} #{proc_type}`
-      raise output if $?.exitstatus != 0
+
+      matrices = get_matrices(proc_type)
+      daltonize_file(current_path, tmp_name, matrices)
+
       FileUtils.mv(tmp_name, current_path)
     rescue => e
       raise CarrierWave::ProcessingError.new("Failed to manipulate file. Original Error: #{e}")

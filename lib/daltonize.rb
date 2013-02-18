@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'vips'
 
-def deuteranope
+def deuteranope_matrices
   # deuteranopes are missing green receptors, so to simulate their vision 
   # we replace the green signal with a 70/30 mix of red and blue
   # to correct, we put 50% of the red/green error into lightness and 100%
@@ -14,7 +14,7 @@ def deuteranope
     [  0,   1,   1]]]
 end
 
-def protanope
+def protanope_matrices
   # protanopes are missing red receptors --- we simulate their condition by
   # replacing the red signal with an 80/20 mix of green and blue (since 
   # blue is far less important than green)
@@ -27,7 +27,7 @@ def protanope
     [  0,   1,   1]]]
 end
 
-def tritanope
+def tritanope_matrices
   # tritanopes are missing blue receptors --- we replace the blue signal
   # with 30/70 red/green
   # to correct, we put 50% of the yellow/blue error into lightness, and 
@@ -42,9 +42,9 @@ end
 
 def get_matrices (prefix)
   matrices = case prefix
-    when "d" then deuteranope
-    when "p" then protanope
-    when "t" then tritanope
+    when "d" then deuteranope_matrices
+    when "p" then protanope_matrices
+    when "t" then tritanope_matrices
     else nil
   end
 end
@@ -102,6 +102,12 @@ def daltonize (image, simulate, distribute)
   image
 end
 
+def daltonize_file(source, destination, matrices)
+  image = VIPS::Image.new(source)
+  image = daltonize(image, *matrices)
+  image.write(destination)
+end
+
 if __FILE__ == $0
   if ARGV.length != 3
     puts "Calling syntax: daltonize.rb [fullpath to image file] [target image full path] [deficit (d=deuteranop, p=protanope, t=tritanope)]"
@@ -115,7 +121,8 @@ if __FILE__ == $0
     exit 1
   end
 
-  image = VIPS::Image.new(ARGV[0])
-  image = daltonize(image, *matrices)
-  image.write(ARGV[1])
+  daltonize_file(ARGV[0], ARGV[1], matrices)
+  # image = VIPS::Image.new(ARGV[0])
+  # image = daltonize(image, *matrices)
+  # image.write(ARGV[1])
 end
