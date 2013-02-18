@@ -28,63 +28,83 @@ module CarrierWave
 
     end
 
-    def daltonize (matrix)
+    def daltonize (simulate, distribute)
       manipulate! do |image|
         begin
             # import to CIELAB with lcms
             # if there's no profile there, we'll fall back to the thing below
             cielab = image.icc_import_embedded(:relative)
+            xyz = cielab.lab_to_xyz()
         rescue VIPS::Error
             # nope .. use the built-in converter instead
-            cielab = image.srgb_to_xyz().xyz_to_lab()
+            xyz = image.srgb_to_xyz()
+            cielab = xyz.xyz_to_lab()
         end
 
-        # turn to XYZ, a linear light space
-        xyz = cielab.lab_to_xyz()
-        orig = xyz
+        # to bradford cone space (a variant of LMS)
+        brad = xyz.recomb([[0.8951,  0.2664, -0.1614],
+                           [-0.7502,  1.7135,  0.0367],
+                           [0.0389, -0.0685,  1.0296]])
 
-        # convert rgb to lms
-        lms = xyz.recomb([[17.8824, 43.5161, 4.11935],
-                          [3.45565, 27.1554, 3.86714],
-                          [0.0299566, 0.184309, 1.46709]])                    
+        # through the color-vision deficit matrix
+        simu = brad.recomb(simulate)
 
-        # through the matrix
-        mat = lms.recomb(matrix)
+        # back to xyz (this is the inverse of the brad matrix above)
+        xyz2 = simu.recomb([[0.987, -0.147, 0.16],
+                           [0.432, 0.5184, 0.0493],
+                           [-0.0085, 0.04, 0.968]])
 
-        # back to xyz (this is the inverse of the lms matrix above)
-        xyz = mat.recomb([[0.0809444479, -0.130504409, 0.116721066],
-                           [-0.0102485335, 0.0540193266, -0.113614708],
-                           [-0.000365296938, -0.00412161469, 0.693511405]])
 
-        # applying some error correction
-        err = orig - xyz
-        err = err.recomb([[0, 0, 0],
-                          [0.7, 1, 0],
-                          [0.7,0,1]])
-        xyz = err + orig
-        # TODO: apply correction to ensure values are between 0-255 (how??)
+        # now find the error in CIELAB
+        cielab2 = xyz2.xyz_to_lab()
+        err = cielab - cielab2
 
-        # .. and export to sRGB for saving
-        rgb = xyz.xyz_to_srgb()
+        # add the error channels back to the original, recombined so as to hit
+        # channels the person is sensitive to
+        cielab = cielab + err.recomb(distribute)
+
+        # .. and back to sRGB 
+        rgb = cielab.lab_to_xyz().xyz_to_srgb()
       end
     end
 
     def deuteranope
-      daltonize([[1, 0, 0],
-                 [0.494207, 0, 1.24827],
-                 [0, 0, 1]])
+      # deuteranopes are missing green receptors, so to simulate their vision 
+      # we replace the green signal with a 70/30 mix of red and blue
+      # to correct, we put 50% of the red/green error into lightness and 100%
+      # into yellow/blue
+      daltonize([[  1,   0,   0],
+                 [0.7,   0, 0.3],
+                 [  0,   0,   1]], 
+                [[  1, 0.5,   0],
+                 [  0,   0,   0],
+                 [  0,   1,   1]])
     end
 
     def protanope
-      daltonize([[0, 2.02344, -2.52581],
-                 [0, 1, 0],
-                 [0, 0, 1]])
+      # protanopes are missing red receptors --- we simulate their condition by
+      # replacing the red signal with an 80/20 mix of green and blue (since 
+      # blue is far less important than green)
+      # correction as for deuts
+      daltonize([[  0, 0.8, 0.2],
+                 [  0,   1,   0],
+                 [  0,   0,   1]], 
+                [[  1, 0.5,   0],
+                 [  0,   0,   0],
+                 [  0,   1,   1]])
     end
 
     def tritanope
-      daltonize([[1, 0, 0],
-                 [0, 1, 0],
-                 [-0.395913, 0.801109, 0]])
+      # tritanopes are missing blue receptors --- we replace the blue signal
+      # with 30/70 red/green
+      # to correct, we put 50% of the yellow/blue error into lightness, and 
+      # 100% into red/green
+      daltonize([[  1,   0,   0],
+                 [  0,   1,   0],
+                 [0.3, 0.7,   0]], 
+                [[  1,   0, 0.5],
+                 [  0,   0,   1],
+                 [  0,   0,   0]])
     end
   end
 end
