@@ -25,11 +25,11 @@ module CarrierWave
 
     end
 
-    # pytonize - daltonize processing using python
-    def pytonize proc_type
+    # rubytonize - daltonize processing using ruby (with vips)
+    def rubytonize proc_type
       cache_stored_file! unless cached?
       tmp_name = current_path.sub(/(\.[a-z]+)$/i, '_tmp\1')
-      output = `python #{@@_gem_path}/vendor/daltonize.py #{current_path} #{tmp_name} #{proc_type}`
+      output = `ruby #{@@_gem_path}/vendor/daltonize.rb #{current_path} #{tmp_name} #{proc_type}`
       raise output if $?.exitstatus != 0
       FileUtils.mv(tmp_name, current_path)
     rescue => e
@@ -37,15 +37,15 @@ module CarrierWave
     end
 
     def deuteranope
-      pytonize 'd'
+      rubytonize 'd'
     end
 
     def protanope
-      pytonize 'p'
+      rubytonize 'p'
     end
 
     def tritanope
-      pytonize 't'
+      rubytonize 't'
     end
   end
 end
