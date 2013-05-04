@@ -1,6 +1,7 @@
 # CarrierWave::Daltonize
 
-Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using carrierwave-vips)
+Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using 
+carrierwave-vips)
 
 ## Installation
 
@@ -39,9 +40,18 @@ any of the daltonize processing functions.
       end
     end
 
-## Limitations
+The directory 'other' contains a command-line version,
+run with something like:
 
-Currently supports only jpeg. 
+    ./daltonize.rb in.jpg out.jpg deuteranope
+
+There's also a version of the algorithm in
+[nip2](https://github.com/jcupitt/nip2) for easy testing of the
+details of the parameters. Run with something like:
+
+    nip2 daltonize.ws
+
+This workspace needs version 7.33 or later of nip2.
 
 ## Contributors
 
