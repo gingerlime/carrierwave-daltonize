@@ -1,35 +1,11 @@
-require "carrierwave-daltonize/version"
+#!/usr/bin/ruby
 
+# run the carrierwave-daltonize filter from the command-line
+
+require 'rubygems'
 require 'vips'
-require 'carrierwave/vips'
 
-module CarrierWave
-  module Daltonize
-
-    include CarrierWave::Vips
-
-    def self.included(base)
-      base.send(:extend, ClassMethods)
-    end
-
-    module ClassMethods
-
-      def deuteranope
-        process :deuteranope
-      end
-
-      def protanope
-        process :protanope
-      end
-
-      def tritanope
-        process :tritanope
-      end
-
-    end
-
-    def daltonize (simulate, distribute)
-      manipulate! do |image|
+    def daltonize (image, simulate, distribute)
         # remove any alpha channel before processing
         alpha = nil
         if image.bands == 4
@@ -78,16 +54,16 @@ module CarrierWave
         end
 
         return image
-      end
     end
 
-    def deuteranope
+    def deuteranope(image)
       # deuteranopes are missing green receptors, so to simulate their vision 
       # we replace the green signal with a 70/30 mix of red and blue
       #
       # to compensate, we put 50% of the red/green error into lightness and 100%
       # into yellow/blue
-      daltonize([[  1,   0,   0],
+      daltonize(image,
+                [[  1,   0,   0],
                  [0.7,   0, 0.3],
                  [  0,   0,   1]], 
                 [[  1, 0.5,   0],
@@ -95,13 +71,14 @@ module CarrierWave
                  [  0,   1,   1]])
     end
 
-    def protanope
+    def protanope(image)
       # protanopes are missing red receptors --- we simulate their condition by
       # replacing the red signal with an 80/20 mix of green and blue (since 
       # blue is far less important than green)
       #
       # compensate as for deuts
-      daltonize([[  0, 0.8, 0.2],
+      daltonize(image,
+                [[  0, 0.8, 0.2],
                  [  0,   1,   0],
                  [  0,   0,   1]], 
                 [[  1, 0.5,   0],
@@ -109,18 +86,54 @@ module CarrierWave
                  [  0,   1,   1]])
     end
 
-    def tritanope
+    def tritanope(image)
       # tritanopes are missing blue receptors --- we replace the blue signal
       # with 30/70 red/green
       #
       # to compensate, we put 50% of the yellow/blue error into lightness, and 
       # 100% into red/green
-      daltonize([[  1,   0,   0],
+      daltonize([image,
+                [  1,   0,   0],
                  [  0,   1,   0],
                  [0.3, 0.7,   0]], 
                 [[  1,   0, 0.5],
                  [  0,   0,   1],
                  [  0,   0,   0]])
     end
-  end
+
+type = { 
+    "deuteranope" => :deuteranope,
+    "protanope" => :protanope,
+    "tritanope" => :tritanope
+}
+
+if ARGV.length != 3
+    puts "usage: daltonize INFILE OUTFILE TYPE"
+    puts "where TYPE is one of #{type.keys.join(', ')}"
+    exit
 end
+
+im = VIPS::Image.new(ARGV[0])
+
+# remove any alpha channel before processing
+alpha = nil
+if im.bands == 4
+    alpha = im.extract_band(3)
+    im = im.extract_band(0, 3)
+end
+
+if not type[ARGV[2]]
+    puts "#{ARGV[2]} is not one of #{type.keys.join(', ')}"
+    exit
+end
+
+im = self.method(type[ARGV[2]]).call(im)
+
+# reattach any alpha we saved above
+if alpha
+    im = im.bandjoin(alpha.clip2fmt(im.format))
+end
+
+im.write(ARGV[1])
+
+
