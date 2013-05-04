@@ -1,6 +1,6 @@
 # CarrierWave::Daltonize
 
-Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using ruby-vips)
+Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using ruby-vips).
 
 ## Installation
 
@@ -54,6 +54,14 @@ details of the parameters. See 'other' directory. Run with something like:
     nip2 daltonize.ws
 
 This workspace needs version 7.33 or later of nip2.
+
+## CarrierWave::VIPS
+
+Note that CarrierWave::Daltonize no longer relies on [CarrierWave::VIPS](https://github.com/eltiare/carrierwave-vips).
+However, since you already need ruby-vips to run this, it would make sense to use it too. 
+
+CarrierWave::VIPS should dramatically increase the speed and reduce memory footprint
+of your carrierwave image processing.
 
 ## Contributors
 
