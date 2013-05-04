@@ -1,7 +1,6 @@
 # CarrierWave::Daltonize
 
-Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using 
-carrierwave-vips)
+Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using ruby-vips)
 
 ## Installation
 
@@ -27,27 +26,30 @@ any of the daltonize processing functions.
     class ColourBlindUploader < CarrierWave::Uploader::Base
       include CarrierWave::Daltonize
 
-      version :deut
-        process :deuteranope
+      version :deuteranope
+        process :daltonize => :deuteranope
       end
 
-      version :prot
-        process :protanope
+      version :protanope
+        process :daltonize => :protanope
       end
 
-      version :trit
-        process :tritanope
+      version :tritanope
+        process :daltonize => :tritanope
       end
     end
 
-The directory 'other' contains a command-line version,
-run with something like:
+### Standalone
 
-    ./daltonize.rb in.jpg out.jpg deuteranope
+You can also use the ruby code without carrierwave to process an image file.
+
+Usage:
+    
+    ./lib/daltonize.rb in.jpg out.jpg deuteranope
 
 There's also a version of the algorithm in
 [nip2](https://github.com/jcupitt/nip2) for easy testing of the
-details of the parameters. Run with something like:
+details of the parameters. See 'other' directory. Run with something like:
 
     nip2 daltonize.ws
 
@@ -55,9 +57,9 @@ This workspace needs version 7.33 or later of nip2.
 
 ## Contributors
 
-* John Cupitt (@jcupitt) - created the ruby-vips algorithm
-* Yoav Aner (@gingerlime) - wrapped the code into this Gem
-* Jeremy Nicoll (@eltiare), Stanislaw Pankevich (@stanislaw) and Mario Visic (@mariovisic) - creators / contributors of carrierwave-vips
+* John Cupitt (@jcupitt) - created the ruby-vips algorithm and greatly improved the python/javascript implementations
+* Oliver Siemoneit - created the original python code for MoinMoin
+* Yoav Aner (@gingerlime) - adapted the code and wrapped it into this Gem
 
 ## Contributing
 

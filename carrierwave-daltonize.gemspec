@@ -6,16 +6,16 @@ require 'carrierwave-daltonize/version'
 Gem::Specification.new do |gem|
   gem.name          = "carrierwave-daltonize"
   gem.version       = Carrierwave::Daltonize::VERSION
-  gem.authors       = ["Yoav Aner", "John Cupitt"]
+  gem.authors       = ["Yoav Aner, John Cupitt"]
   gem.email         = ["yoav@gingerlime.com"]
-  gem.description   = %q{Carrierwave Daltonize processing}
-  gem.summary       = %q{Adds daltonize processing for converting images to help colour-blindness. Using CarrierWave-VIPS}
+  gem.description   = %q{Carrierwave VIPS Daltonize processing}
+  gem.summary       = %q{Adds daltonize processing for converting images to help colour-blindness. Using the ruby-vips implmentation}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
+  gem.require_paths = ["lib", "other"]
+  gem.add_runtime_dependency 'ruby-vips', '>=0.2.0'
 
-  gem.add_runtime_dependency 'carrierwave-vips'
 end
