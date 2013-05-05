@@ -10,7 +10,7 @@ The following samples were produced using `daltonize.rb`
 ![original](images/ishihara.png)
 
 ### Deuteranope
-![deuteranope](images/ishihara_deuternaope.png)
+![deuteranope](images/ishihara_deuteranope.png)
 
 ### Protanope
 ![protanope](images/ishihara_protanope.png)
@@ -26,7 +26,7 @@ Provided by @jcupitt
 ![original](images/macbeth.jpg)
 
 ### Deuteranope
-![deuteranope](images/macbeth_deuternaope.jpg)
+![deuteranope](images/macbeth_deuteranope.jpg)
 
 ### Protanope
 ![protanope](images/macbeth_protanope.jpg)
