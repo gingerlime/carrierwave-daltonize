@@ -2,6 +2,9 @@
 
 Adds [daltonize](http://www.daltonize.org/) processing to carrierwave (using ruby-vips).
 
+[![original](/other/images/ishihara.png)](/other/samples.md)
+Click to see processing samples
+
 ## Installation
 
 Requires ruby-vips. See https://github.com/jcupitt/ruby-vips
