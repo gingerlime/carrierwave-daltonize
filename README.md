@@ -11,7 +11,7 @@ Requires ruby-vips. See https://github.com/jcupitt/ruby-vips
 
 Add this line to your application's Gemfile:
 
-    gem 'carrierwave-daltonize', :git => 'git://github.com/gingerlime/carrierwave-daltonize.git'
+    gem 'carrierwave-daltonize'
 
 And then execute:
 
@@ -49,6 +49,21 @@ You can also use the ruby code without carrierwave to process an image file.
 Usage:
     
     ./lib/daltonize.rb in.jpg out.jpg deuteranope
+
+In your ruby code:
+
+    require 'rubygems'
+    require 'vips'
+    require 'carrierwave-daltonize'
+
+    # to process an image filename for deuteranopia and save it
+    Daltonize.daltonize_file(source, destination, :deuteranope)
+
+    # or calling the daltonize function directly
+
+    im = VIPS::Image.new(source)
+    im = Daltonize.tritanope(im)
+    im.write(destination)
 
 There's also a version of the algorithm in
 [nip2](https://github.com/jcupitt/nip2) for easy testing of the
