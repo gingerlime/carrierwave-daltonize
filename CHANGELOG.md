@@ -1,3 +1,8 @@
+# Version 0.0.4
+
+* improve neutral handling [John Cupitt]
+* pre-multiply matrices for a small speedup [John Cupitt]
+
 # Version 0.0.3
 
 * moved code into lib/daltonize.rb [Yoav Aner]

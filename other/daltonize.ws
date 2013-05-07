@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <root xmlns="http://www.vips.ecs.soton.ac.uk/nip/7.33.0">
-  <Workspace window_x="51" window_y="29" window_width="728" window_height="1050" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="images" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
-    <Column x="0" y="0" open="true" selected="false" sform="false" next="9" name="A" caption="import">
+  <Workspace window_x="341" window_y="68" window_width="1286" window_height="1032" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="images" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
+    <Column x="0" y="0" open="true" selected="true" sform="false" next="10" name="A" caption="import">
       <Subcolumn vislevel="3">
         <Row popup="false" name="A1">
-          <Rhs vislevel="1" flags="1">
+          <Rhs vislevel="2" flags="5">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="Image_file &quot;$HOME/GIT/carrierwave-daltonize/other/images/macbeth.jpg&quot;"/>
@@ -53,7 +53,7 @@
         </Row>
       </Subcolumn>
     </Column>
-    <Column x="438" y="0" open="true" selected="false" sform="false" next="3" name="F" caption="results">
+    <Column x="575" y="0" open="true" selected="false" sform="false" next="3" name="F" caption="results">
       <Subcolumn vislevel="3">
         <Row popup="false" name="F2">
           <Rhs vislevel="2" flags="5">
@@ -78,7 +78,7 @@
         </Row>
       </Subcolumn>
     </Column>
-    <Column x="1211" y="0" open="true" selected="false" sform="false" next="5" name="H" caption="as a grid">
+    <Column x="1348" y="0" open="true" selected="false" sform="false" next="5" name="H" caption="as a grid">
       <Subcolumn vislevel="3">
         <Row popup="false" name="H1">
           <Rhs vislevel="2" flags="4">
@@ -87,7 +87,7 @@
         </Row>
         <Row popup="false" name="H4">
           <Rhs vislevel="3" flags="7">
-            <iImage window_x="852" window_y="185" window_width="462" window_height="677" image_left="1120" image_top="1505" image_mag="-5" show_status="true" show_paintbox="false" show_convert="false" show_rulers="false" scale="1" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="472" window_y="119" window_width="968" window_height="945" image_left="954" image_top="870" image_mag="-2" show_status="true" show_paintbox="false" show_convert="false" show_rulers="false" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1">
               <Row name="x">
                 <Rhs vislevel="0" flags="4">
@@ -118,7 +118,24 @@
               <Row name="bg_colour">
                 <Rhs vislevel="1" flags="1">
                   <Expression caption="Background colour"/>
-                  <Subcolumn vislevel="0"/>
+                  <Subcolumn vislevel="0">
+                    <Row name="caption">
+                      <Rhs vislevel="0" flags="4">
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                    <Row name="expr">
+                      <Rhs vislevel="0" flags="4">
+                        <iText formula="255"/>
+                      </Rhs>
+                    </Row>
+                    <Row name="super">
+                      <Rhs vislevel="1" flags="4">
+                        <Subcolumn vislevel="0"/>
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                  </Subcolumn>
                   <iText/>
                 </Rhs>
               </Row>
@@ -142,7 +159,7 @@
         </Row>
       </Subcolumn>
     </Column>
-    <Column x="736" y="0" open="true" selected="true" sform="false" next="2" name="I" caption="export">
+    <Column x="873" y="0" open="true" selected="false" sform="false" next="2" name="I" caption="export">
       <Subcolumn vislevel="3">
         <Row popup="false" name="I1">
           <Rhs vislevel="3" flags="7">
@@ -168,8 +185,8 @@
       </Subcolumn>
     </Column>
   </Workspace>
-  <Workspace window_x="51" window_y="29" window_width="728" window_height="1050" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="deuteranope" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
-    <Column x="0" y="0" open="true" selected="false" sform="false" next="1" name="B" caption="simulate colourblindness">
+  <Workspace window_x="341" window_y="68" window_width="1286" window_height="1032" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="deuteranope" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
+    <Column x="0" y="365" open="true" selected="true" sform="false" next="14" name="B" caption="simulate colourblindness">
       <Subcolumn vislevel="3">
         <Row popup="false" name="B2">
           <Rhs vislevel="2" flags="5">
@@ -185,11 +202,18 @@
             <iText formula="Colour_convert_item.XYZ_item.action B2"/>
           </Rhs>
         </Row>
+        <Row popup="false" name="B8">
+          <Rhs vislevel="2" flags="5">
+            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <Subcolumn vislevel="0"/>
+            <iText formula="100 * B3 / A2"/>
+          </Rhs>
+        </Row>
         <Row popup="false" name="B4">
           <Rhs vislevel="2" flags="5">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
-            <iText formula="recomb XYZ2RGBbrad B3"/>
+            <iText formula="recomb XYZ2RGBbrad B8"/>
           </Rhs>
         </Row>
         <Row popup="false" name="B5">
@@ -226,16 +250,23 @@
             <iText formula="recomb RGBbrad2XYZ B5"/>
           </Rhs>
         </Row>
+        <Row popup="false" name="B9">
+          <Rhs vislevel="2" flags="5">
+            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <Subcolumn vislevel="0"/>
+            <iText formula="A2 * B6 / 100"/>
+          </Rhs>
+        </Row>
         <Row popup="false" name="B7">
           <Rhs vislevel="3" flags="7">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1"/>
-            <iText formula="Colour_convert_item.Lab_item.action B6"/>
+            <iText formula="Colour_convert_item.Lab_item.action B9"/>
           </Rhs>
         </Row>
       </Subcolumn>
     </Column>
-    <Column x="576" y="0" open="true" selected="false" sform="false" next="6" name="C" caption="find error, add back to original">
+    <Column x="606" y="0" open="true" selected="false" sform="false" next="6" name="C" caption="find error, add back to original">
       <Subcolumn vislevel="3">
         <Row popup="false" name="C1">
           <Rhs vislevel="2" flags="5">
@@ -294,9 +325,76 @@
         </Row>
       </Subcolumn>
     </Column>
+    <Column x="0" y="0" open="true" selected="false" sform="false" next="3" name="A" caption="D65 temperature">
+      <Subcolumn vislevel="3">
+        <Row popup="false" name="A1">
+          <Rhs vislevel="3" flags="7">
+            <Colour/>
+            <Subcolumn vislevel="1">
+              <Row name="default_colour">
+                <Rhs vislevel="0" flags="4">
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="default_value">
+                <Rhs vislevel="0" flags="4">
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="super">
+                <Rhs vislevel="0" flags="4">
+                  <Colour/>
+                  <Subcolumn vislevel="0"/>
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="space">
+                <Rhs vislevel="1" flags="1">
+                  <Option/>
+                  <Subcolumn vislevel="0"/>
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="colour">
+                <Rhs vislevel="1" flags="1">
+                  <Expression caption="Colour value"/>
+                  <Subcolumn vislevel="0">
+                    <Row name="caption">
+                      <Rhs vislevel="0" flags="4">
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                    <Row name="expr">
+                      <Rhs vislevel="0" flags="4">
+                        <iText formula="[100, 0, 0]"/>
+                      </Rhs>
+                    </Row>
+                    <Row name="super">
+                      <Rhs vislevel="1" flags="4">
+                        <Subcolumn vislevel="0"/>
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                  </Subcolumn>
+                  <iText/>
+                </Rhs>
+              </Row>
+            </Subcolumn>
+            <iText formula="Colour_new_item.Widget_colour_item.action"/>
+          </Rhs>
+        </Row>
+        <Row popup="false" name="A2">
+          <Rhs vislevel="3" flags="7">
+            <Colour/>
+            <Subcolumn vislevel="1"/>
+            <iText formula="Colour_convert_item.XYZ_item.action A1"/>
+          </Rhs>
+        </Row>
+      </Subcolumn>
+    </Column>
   </Workspace>
-  <Workspace window_x="51" window_y="29" window_width="728" window_height="1050" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="protanope" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
-    <Column x="0" y="0" open="true" selected="true" sform="false" next="1" name="B" caption="simulate colourblindness">
+  <Workspace window_x="341" window_y="68" window_width="1286" window_height="1032" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="protanope" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
+    <Column x="0" y="365" open="true" selected="true" sform="false" next="10" name="B" caption="simulate colourblindness">
       <Subcolumn vislevel="3">
         <Row popup="false" name="B2">
           <Rhs vislevel="2" flags="5">
@@ -312,16 +410,23 @@
             <iText formula="Colour_convert_item.XYZ_item.action B2"/>
           </Rhs>
         </Row>
+        <Row popup="false" name="B8">
+          <Rhs vislevel="2" flags="5">
+            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <Subcolumn vislevel="0"/>
+            <iText formula="100 * B3 / A2"/>
+          </Rhs>
+        </Row>
         <Row popup="false" name="B4">
           <Rhs vislevel="2" flags="5">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
-            <iText formula="recomb XYZ2RGBbrad B3"/>
+            <iText formula="recomb XYZ2RGBbrad B8"/>
           </Rhs>
         </Row>
         <Row popup="false" name="B5">
           <Rhs vislevel="3" flags="7">
-            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="975" window_y="546" window_width="477" window_height="333" image_left="693" image_top="387" image_mag="-3" show_status="true" show_paintbox="false" show_convert="false" show_rulers="false" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1">
               <Row name="x">
                 <Rhs vislevel="0" flags="4">
@@ -348,21 +453,28 @@
         </Row>
         <Row popup="false" name="B6">
           <Rhs vislevel="2" flags="5">
-            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="1" window_y="29" window_width="909" window_height="766" image_left="447" image_top="345" image_mag="1" show_status="true" show_paintbox="false" show_convert="false" show_rulers="false" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="recomb RGBbrad2XYZ B5"/>
+          </Rhs>
+        </Row>
+        <Row popup="false" name="B9">
+          <Rhs vislevel="2" flags="5">
+            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <Subcolumn vislevel="0"/>
+            <iText formula="A2 * B6 / 100"/>
           </Rhs>
         </Row>
         <Row popup="false" name="B7">
           <Rhs vislevel="3" flags="7">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1"/>
-            <iText formula="Colour_convert_item.Lab_item.action B6"/>
+            <iText formula="Colour_convert_item.Lab_item.action B9"/>
           </Rhs>
         </Row>
       </Subcolumn>
     </Column>
-    <Column x="576" y="0" open="true" selected="false" sform="false" next="6" name="C" caption="find error, add back to original">
+    <Column x="606" y="0" open="true" selected="false" sform="false" next="6" name="C" caption="find error, add back to original">
       <Subcolumn vislevel="3">
         <Row popup="false" name="C1">
           <Rhs vislevel="2" flags="5">
@@ -380,14 +492,14 @@
         </Row>
         <Row popup="false" name="C3">
           <Rhs vislevel="2" flags="5">
-            <iImage window_x="0" window_y="29" window_width="477" window_height="333" image_left="221" image_top="101" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="0" window_y="29" window_width="1019" window_height="843" image_left="492" image_top="356" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="C2 - C1"/>
           </Rhs>
         </Row>
         <Row popup="false" name="C4">
           <Rhs vislevel="3" flags="7">
-            <iImage window_x="0" window_y="29" window_width="477" window_height="333" image_left="221" image_top="101" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="0" window_y="29" window_width="1016" window_height="839" image_left="491" image_top="354" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1">
               <Row name="x">
                 <Rhs vislevel="0" flags="4">
@@ -414,16 +526,83 @@
         </Row>
         <Row popup="false" name="C5">
           <Rhs vislevel="2" flags="5">
-            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="246" window_y="429" window_width="948" window_height="853" image_left="457" image_top="361" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="C1 + C4"/>
           </Rhs>
         </Row>
       </Subcolumn>
     </Column>
+    <Column x="0" y="0" open="true" selected="false" sform="false" next="3" name="A" caption="D65 temperature">
+      <Subcolumn vislevel="3">
+        <Row popup="false" name="A1">
+          <Rhs vislevel="3" flags="7">
+            <Colour/>
+            <Subcolumn vislevel="1">
+              <Row name="default_colour">
+                <Rhs vislevel="0" flags="4">
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="default_value">
+                <Rhs vislevel="0" flags="4">
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="super">
+                <Rhs vislevel="0" flags="4">
+                  <Colour/>
+                  <Subcolumn vislevel="0"/>
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="space">
+                <Rhs vislevel="1" flags="1">
+                  <Option/>
+                  <Subcolumn vislevel="0"/>
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="colour">
+                <Rhs vislevel="1" flags="1">
+                  <Expression caption="Colour value"/>
+                  <Subcolumn vislevel="0">
+                    <Row name="caption">
+                      <Rhs vislevel="0" flags="4">
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                    <Row name="expr">
+                      <Rhs vislevel="0" flags="4">
+                        <iText formula="[100, 0, 0]"/>
+                      </Rhs>
+                    </Row>
+                    <Row name="super">
+                      <Rhs vislevel="1" flags="4">
+                        <Subcolumn vislevel="0"/>
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                  </Subcolumn>
+                  <iText/>
+                </Rhs>
+              </Row>
+            </Subcolumn>
+            <iText formula="Colour_new_item.Widget_colour_item.action"/>
+          </Rhs>
+        </Row>
+        <Row popup="false" name="A2">
+          <Rhs vislevel="3" flags="7">
+            <Colour/>
+            <Subcolumn vislevel="1"/>
+            <iText formula="Colour_convert_item.XYZ_item.action A1"/>
+          </Rhs>
+        </Row>
+      </Subcolumn>
+    </Column>
   </Workspace>
-  <Workspace window_x="51" window_y="29" window_width="728" window_height="1050" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="tritanope" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
-    <Column x="0" y="0" open="true" selected="true" sform="false" next="1" name="B" caption="simulate colourblindness">
+  <Workspace window_x="341" window_y="68" window_width="1286" window_height="1032" view="WORKSPACE_MODE_REGULAR" scale="1" offset="0" lpane_position="100" lpane_open="false" rpane_position="400" rpane_open="false" local_defs="// private definitions for this workspace&#10;" name="tritanope" caption="Default empty tab" filename="$HOME/GIT/carrierwave-daltonize/other/daltonize.ws">
+    <Column x="0" y="365" open="true" selected="true" sform="false" next="10" name="B" caption="simulate colourblindness">
       <Subcolumn vislevel="3">
         <Row popup="false" name="B2">
           <Rhs vislevel="2" flags="5">
@@ -439,16 +618,23 @@
             <iText formula="Colour_convert_item.XYZ_item.action B2"/>
           </Rhs>
         </Row>
+        <Row popup="false" name="B8">
+          <Rhs vislevel="2" flags="5">
+            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <Subcolumn vislevel="0"/>
+            <iText formula="100 * B3 / A2"/>
+          </Rhs>
+        </Row>
         <Row popup="false" name="B4">
           <Rhs vislevel="2" flags="5">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
-            <iText formula="recomb XYZ2RGBbrad B3"/>
+            <iText formula="recomb XYZ2RGBbrad B8"/>
           </Rhs>
         </Row>
         <Row popup="false" name="B5">
           <Rhs vislevel="3" flags="7">
-            <iImage window_x="0" window_y="29" window_width="750" window_height="750" image_left="358" image_top="309" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="1" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="975" window_y="546" window_width="477" window_height="333" image_left="693" image_top="387" image_mag="-3" show_status="true" show_paintbox="false" show_convert="false" show_rulers="false" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1">
               <Row name="x">
                 <Rhs vislevel="0" flags="4">
@@ -475,21 +661,28 @@
         </Row>
         <Row popup="false" name="B6">
           <Rhs vislevel="2" flags="5">
-            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="1" window_y="29" window_width="909" window_height="766" image_left="447" image_top="345" image_mag="1" show_status="true" show_paintbox="false" show_convert="false" show_rulers="false" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="recomb RGBbrad2XYZ B5"/>
+          </Rhs>
+        </Row>
+        <Row popup="false" name="B9">
+          <Rhs vislevel="2" flags="5">
+            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <Subcolumn vislevel="0"/>
+            <iText formula="A2 * B6 / 100"/>
           </Rhs>
         </Row>
         <Row popup="false" name="B7">
           <Rhs vislevel="3" flags="7">
             <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1"/>
-            <iText formula="Colour_convert_item.Lab_item.action B6"/>
+            <iText formula="Colour_convert_item.Lab_item.action B9"/>
           </Rhs>
         </Row>
       </Subcolumn>
     </Column>
-    <Column x="576" y="0" open="true" selected="false" sform="false" next="6" name="C" caption="find error, add back to original">
+    <Column x="606" y="0" open="true" selected="false" sform="false" next="6" name="C" caption="find error, add back to original">
       <Subcolumn vislevel="3">
         <Row popup="false" name="C1">
           <Rhs vislevel="2" flags="5">
@@ -507,14 +700,14 @@
         </Row>
         <Row popup="false" name="C3">
           <Rhs vislevel="2" flags="5">
-            <iImage window_x="0" window_y="29" window_width="477" window_height="333" image_left="221" image_top="101" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="0" window_y="29" window_width="1019" window_height="843" image_left="492" image_top="356" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="C2 - C1"/>
           </Rhs>
         </Row>
         <Row popup="false" name="C4">
           <Rhs vislevel="3" flags="7">
-            <iImage window_x="0" window_y="29" window_width="477" window_height="333" image_left="221" image_top="101" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="0" window_y="29" window_width="1016" window_height="839" image_left="491" image_top="354" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="20" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="1">
               <Row name="x">
                 <Rhs vislevel="0" flags="4">
@@ -541,9 +734,76 @@
         </Row>
         <Row popup="false" name="C5">
           <Rhs vislevel="2" flags="5">
-            <iImage image_left="0" image_top="0" image_mag="0" show_status="false" show_paintbox="false" show_convert="false" show_rulers="false" scale="0" offset="0" falsecolour="false" type="true"/>
+            <iImage window_x="246" window_y="429" window_width="948" window_height="853" image_left="457" image_top="361" image_mag="1" show_status="true" show_paintbox="false" show_convert="true" show_rulers="true" scale="1" offset="0" falsecolour="false" type="true"/>
             <Subcolumn vislevel="0"/>
             <iText formula="C1 + C4"/>
+          </Rhs>
+        </Row>
+      </Subcolumn>
+    </Column>
+    <Column x="0" y="0" open="true" selected="false" sform="false" next="3" name="A" caption="D65 temperature">
+      <Subcolumn vislevel="3">
+        <Row popup="false" name="A1">
+          <Rhs vislevel="3" flags="7">
+            <Colour/>
+            <Subcolumn vislevel="1">
+              <Row name="default_colour">
+                <Rhs vislevel="0" flags="4">
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="default_value">
+                <Rhs vislevel="0" flags="4">
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="super">
+                <Rhs vislevel="0" flags="4">
+                  <Colour/>
+                  <Subcolumn vislevel="0"/>
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="space">
+                <Rhs vislevel="1" flags="1">
+                  <Option/>
+                  <Subcolumn vislevel="0"/>
+                  <iText/>
+                </Rhs>
+              </Row>
+              <Row name="colour">
+                <Rhs vislevel="1" flags="1">
+                  <Expression caption="Colour value"/>
+                  <Subcolumn vislevel="0">
+                    <Row name="caption">
+                      <Rhs vislevel="0" flags="4">
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                    <Row name="expr">
+                      <Rhs vislevel="0" flags="4">
+                        <iText formula="[100, 0, 0]"/>
+                      </Rhs>
+                    </Row>
+                    <Row name="super">
+                      <Rhs vislevel="1" flags="4">
+                        <Subcolumn vislevel="0"/>
+                        <iText/>
+                      </Rhs>
+                    </Row>
+                  </Subcolumn>
+                  <iText/>
+                </Rhs>
+              </Row>
+            </Subcolumn>
+            <iText formula="Colour_new_item.Widget_colour_item.action"/>
+          </Rhs>
+        </Row>
+        <Row popup="false" name="A2">
+          <Rhs vislevel="3" flags="7">
+            <Colour/>
+            <Subcolumn vislevel="1"/>
+            <iText formula="Colour_convert_item.XYZ_item.action A1"/>
           </Rhs>
         </Row>
       </Subcolumn>
