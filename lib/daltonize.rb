@@ -11,8 +11,20 @@
 # im = ::Daltonize.tritanope(im)
 # im.write(destination)
 
+require 'matrix'
 require 'rubygems'
 require 'vips'
+
+# D65 to E and back 
+D652E = Matrix.diagonal(100 / 95.047, 100 / 100, 100 / 108.883)
+E2D65 = D652E ** -1
+
+# Take CIE XYZ to Bradford cone space (a variant of LMS)
+# See http://en.wikipedia.org/wiki/LMS_color_space#CMCCAT97
+XYZ2BRAD = Matrix[[0.8951,  0.2664, -0.1614],
+                      [-0.7502,  1.7135,  0.0367],
+                      [0.0389, -0.0685,  1.0296]]
+BRAD2XYZ = XYZ2BRAD ** -1
 
 module Daltonize
 
@@ -35,18 +47,19 @@ module Daltonize
           cielab = xyz.xyz_to_lab()
       end
 
-      # to bradford cone space (a variant of LMS)
-      brad = xyz.recomb([[0.8951,  0.2664, -0.1614],
-                         [-0.7502,  1.7135,  0.0367],
-                         [0.0389, -0.0685,  1.0296]])
+      # pre-multiply our colour matrix
+      #
+      # reading right to left, we want to take our D65 XYZ to E, then to 
+      # Bradford cone space, then through the simulation matrix, then back 
+      # to XYZ, then back to D65
+      #
+      # we need to use E because we will be juggling the colour channels and we
+      # want them all to have the same range so as not to disturb the neutral
+      # axis
+      m = E2D65 * BRAD2XYZ * Matrix.rows(simulate) * XYZ2BRAD * D652E
 
-      # through the color-vision deficit matrix
-      simu = brad.recomb(simulate)
-
-      # back to xyz (this is the inverse of the brad matrix above)
-      xyz2 = simu.recomb([[0.987, -0.147, 0.16],
-                         [0.432, 0.5184, 0.0493],
-                         [-0.0085, 0.04, 0.968]])
+      # simulate colour-blindness
+      xyz2 = xyz.recomb(m.to_a())
 
       # now find the error in CIELAB
       cielab2 = xyz2.xyz_to_lab()
