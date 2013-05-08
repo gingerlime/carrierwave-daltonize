@@ -2,6 +2,8 @@
 
 * improve neutral handling [John Cupitt]
 * pre-multiply matrices for a small speedup [John Cupitt]
+* Updated image samples [Yoav Aner]
+* added MIT license to Readme [Yoav Aner]
 
 # Version 0.0.3
 
